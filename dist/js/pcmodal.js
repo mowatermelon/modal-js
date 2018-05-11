@@ -108,84 +108,89 @@ let showmodal = function (options) {
         * 绑定事件
         */
         initCss: function () {
-            $(".show_Modal.modal .modal-dialog .modal-content").css({ "border-radius": "15px", "background-color": "transparent" });
-            $(".show_Modal.modal .modal-dialog .modal-content .modal-header").css({ "padding": "5px" });
-            $(".show_Modal.modal .modal-dialog .modal-content .modal-body").css({ "margin-bottom": "0" });
-            $(".show_Modal.modal .modal-dialog .modal-content .modal-header .modal-title,.show_Modal.modal .modal-dialog .modal-content .modal-header .close").css({ "font-size": "20px", "color": "#fff", "line-height": "40px" });
-            $(".show_Modal.modal .modal-dialog .modal-content .modal-header .modal-title").css({ "padding-left": "20px", "padding-right": "20px" });
-            $(".show_Modal.modal .modal-dialog .modal-content .modal-header .close").css({ "margin": 0, "padding": "0 10px 0 0" });
+            let _modalAll = $("#showModal" + this.modalIndex);                        
+            let _modalDialog = _modalAll.children(" .modal-dialog");            
+            let _modalContent = _modalDialog.children(".modal-content");
+            let _modalHeader = _modalContent.children(".modal-header");
+            let _modalBody = _modalContent.children(".modal-body");
+            let _modalFooter = _modalContent.children(".modal-footer");
+            
+            _modalContent.css({ "border-radius": "15px", "background-color": "transparent" });
 
-            $(".show_Modal.modal .modal-dialog .modal-content .modal-header .glyphicon").css({ "line-height": "25px" });
-            $(".show_Modal.modal .modal-dialog .modal-content  .modal-header").css({ "border-radius": "15px 15px 0 0", "border-bottom": "1px solid #e5e5e5" });
-            $(".show_Modal.modal .modal-dialog .modal-content .modal-footer").css({ "margin-top": "0px", "border-radius": "0 0 15px 15px", "padding": "5px" });
-            $(".show_Modal.modal .modal-dialog .modal-content .modal-footer .row").css({ "width": "100%" });
-            $(".show_Modal.modal .modal-dialog .modal-content .modal-footer .row .btn-link").css({ "font-size": "18px" });
+            _modalHeader.css({ "padding": "5px","border-radius": "15px 15px 0 0", "border-bottom": "1px solid #e5e5e5" });
+            _modalHeader.children(".modal-title,.close").css({ "font-size": "20px", "color": "#fff", "line-height": "40px" });
+            _modalHeader.children(".modal-title").css({ "padding-left": "20px", "padding-right": "20px" });
+            _modalHeader.children(".close").css({ "margin": 0, "padding": "0 10px 0 0" });
+            _modalHeader.children(".glyphicon").css({ "line-height": "25px" });
+            
+            _modalBody.css({ "margin-bottom": "0" });
+
+            _modalFooter.css({ "margin-top": "0px", "border-radius": "0 0 15px 15px", "padding": "5px" });
+            _modalFooter.children(".row").css({ "width": "100%" });
+            _modalFooter.children(".row .btn-link").css({ "font-size": "18px" });
             //判断modalbody是否为文本类型
             if (!this.isText) {
                 if (!this.iframePadding) {
-                    $("#showModal" + this.modalIndex + " .modal-dialog .modal-content .modal-body").css({ "padding": "0", "overflow": "hidden" });
+                    _modalBody.css({ "padding": "0", "overflow": "hidden" });
                 }
-                $("#showModal" + this.modalIndex + " .modal-dialog .modal-content .modal-body #modalIframe").css({ "border": "0 none #eee", "width": "100%", "margin": "0 auto", "height": "99%" });
+                _modalBody.children("#modalIframe").css({ "border": "0 none #eee", "width": "100%", "margin": "0 auto", "height": "99%" });
 
             }
             //判断是否需要重新设置模态窗宽度
             if (this.SWidth != "") {
-                let m_top = $("#showModal" + this.modalIndex).css("margin-top");
-                $("#showModal" + this.modalIndex + " .modal-dialog").css({ "width": this.SWidth + "px" });
-
+                let m_top = _modalAll.css("margin-top");
+                _modalDialog.css({ "width": this.SWidth + "px" });
 
             }
             //判断是否需要重新设置模态窗高度
             if (this.Sheight != "") {
-                $("#showModal" + this.modalIndex + " .modal-dialog .modal-content .modal-body").css({ "height": this.Sheight + "px" });
+                _modalBody.css({ "height": this.Sheight + "px" });
 
             }
 
             //判断是否需要重新设置模态窗宽度
             if (this.SMaxWidth != "") {
-                let m_top = $("#showModal" + this.modalIndex).css("margin-top");
-                $("#showModal" + this.modalIndex + " .modal-dialog").css({ "max-width": this.SMaxWidth + "px" });
-
-
+                let m_top = _modalAll.css("margin-top");
+                _modalDialog.css({ "max-width": this.SMaxWidth + "px" });
             }
+
             //判断是否需要重新设置模态窗高度
             if (this.SMaxheight != "") {
-                //$(".show_Modal.modal,.show_Modal.modal .modal-dialog").css({ "height": this.Sheight + "px" });
                 if (!this.isText) {
-                    $("#showModal" + this.modalIndex + " .modal-dialog .modal-content .modal-body iframe").css({ "max-height": this.SMaxheight + "px" });
+                    _modalBody.children("iframe").css({ "max-height": this.SMaxheight + "px" });
                 } else {
-                    $("#showModal" + this.modalIndex + " .modal-dialog .modal-content .modal-body").css({ "max-height": this.SMaxheight + "px" });
+                    _modalBody.css({ "max-height": this.SMaxheight + "px" });
                 }
 
             }
             //判断是否需要重新设置模态窗body字体大小
             if (this.fontSize != "") {
-                $("#showModal" + this.modalIndex + " .modal-dialog .modal-body").removeClass("h3").css({ "font-size": this.fontSize + "px" });
+                _modalBody.removeClass("h3").css({ "font-size": this.fontSize + "px" });
             } else {
-                if (!$("#showModal" + this.modalIndex + " .modal-dialog .modal-content .modal-body").hasClass("h3")) {
-                    $("#showModal" + this.modalIndex + " .modal-dialog .modal-content .modal-body").addClass("h3")
+                if (!_modalBody.hasClass("h3")) {
+                    _modalBody.addClass("h3")
                 }
             }
 
             //判断是否需要重新设置模态窗body是否包含img标签
-            if ($("#showModal" + this.modalIndex + " .modal-dialog .modal-body").children("img").length > 0) {
+            if (_modalBody.children("img").length > 0) {
                 this.moveModal();
-                let cHeight = $("#showModal" + this.modalIndex).height();
-                let cWidth = $("#showModal" + this.modalIndex).width();
-                $("#showModal" + this.modalIndex + " .modal-dialog").css({ "min-width": cWidth * 0.6 });
-                $("#showModal" + this.modalIndex + " .modal-dialog .modal-content .modal-body").css({ "max-height": cHeight * 0.7, "overflow": "auto" });
+                let cHeight = _modalAll.height();
+                let cWidth = _modalAll.width();
+                _modalDialog.css({ "min-width": cWidth * 0.6 });
+                _modalBody.css({ "max-height": cHeight * 0.7, "overflow": "auto" });
             } else {
-                $("#showModal" + this.modalIndex + " .modal-dialog").css({ "min-width": "auto" });
-                $("#showModal" + this.modalIndex + " .modal-dialog .modal-content .modal-body").css({ "max-height": "auto", "overflow-x": "hidden" });
+                _modalDialog.css({ "min-width": "auto" });
+                _modalBody.css({ "max-height": "auto", "overflow-x": "hidden" });
             }
 
             //判断是否需要重新设置模态窗body是否包含iframe标签
-            if ($("#showModal" + this.modalIndex + " .modal-dialog .modal-content .modal-body").children("iframe").length > 0) {
+            if (_modalBody.children("iframe").length > 0) {
                 this.moveModal();
             }
 
             //判断是否需要重新设置模态窗body是否包含div标签
-            if ($("#showModal" + this.modalIndex + " .modal-dialog .modal-content .modal-body").children("div").length > 0) {
+            if (_modalBody.children("div").length > 0) {
                 this.moveModal();
             }
             //判断是否重新计算modal的居中效果
@@ -199,10 +204,15 @@ let showmodal = function (options) {
         },
         initFunction: function () {
             let _this = this;
+            let _modalOld = $("#showModal0" + (_this.modalIndex - 1)); 
+            let _modalAll = $("#showModal" + this.modalIndex); 
+            let _modalDialog = _modalAll.children(".modal-dialog");    
+            let _modalHeader = _modalDialog.children(".modal-content .modal-header");                  
+            let _modalBody = _modalDialog.children(".modal-content .modal-body");
             if (iE9) {
                 _this.callbackShown();
             }
-            $("#showModal" + _this.modalIndex + " #close").click(function (event) {
+            _modalAll.children("#close").click(function (event) {
                 if (_this.callbackB && _this.Bclose) {
                     if (!_this.callbackBF()) {
                         _this.cancelFlow(event);
@@ -210,7 +220,7 @@ let showmodal = function (options) {
                     }
                 }
             });
-            $("#showModal" + _this.modalIndex + " #bcancel").click(function (event) {
+            _modalAll.children("#bcancel").click(function (event) {
                 if (_this.callbackQ && _this.Qclose) {
                     if (!_this.callbackQF()) {
                         _this.cancelFlow(event);
@@ -220,26 +230,24 @@ let showmodal = function (options) {
 
             });
 
-            $("#showModal" + _this.modalIndex).off('shown.bs.modal').on("shown.bs.modal", function () {
+            _modalAll.off('shown.bs.modal').on("shown.bs.modal", function () {
                 //在模态框完全展示出来做一些动作
                 $(document).off('focusin.bs.modal');
-                //$(document.body).blur();
-                //$("#showModal" + this.modalIndex).on('focusin.bs.modal');
                 if (_this.modalIndex > 1) {
-                    $("#showModal0" + (_this.modalIndex - 1) + " .modal-dialog").css({ "opacity": 0.8 });
+                    _modalOld.children(".modal-dialog").css({ "opacity": 0.8 });
                 }
                 if (!iE9) {
                     _this.callbackShown();
                 }
             });
-            $("#showModal" + _this.modalIndex).on("hide.bs.modal", function () {
+            _modalAll.on("hide.bs.modal", function () {
                 if (_this.modalIndex > 1) {
-                    $("#showModal0" + (_this.modalIndex - 1) + " .modal-dialog").css({ "opacity": 1 });
+                    _modalOld.children(".modal-dialog").css({ "opacity": 1 });
                 }
                 //hide方法后调用
                 $(this).remove();
                 $(document.body).removeClass("modal-open");
-                $("#showModal" + this.modalIndex).blur();
+                _modalAll.blur();
                 _this.callbackHide();
             });
 
@@ -248,27 +256,27 @@ let showmodal = function (options) {
                 _this.moveModal();
                 let d_h = document.body.clientHeight;
                 let d_w = document.body.clientWidth;
-                let s_h = $("#showModal" + _this.modalIndex + " .modal-dialog").height();
-                let b_h = _this.Sheight.length > 0 ? _this.Sheight : $("#showModal" + _this.modalIndex + " .modal-dialog .modal-content .modal-body").height();
-                let s_w = _this.SWidth.length > 0 ? _this.SWidth : $("#showModal" + _this.modalIndex + " .modal-dialog").width();
-                let m_t = $("#showModal" + _this.modalIndex + " .modal-dialog").css('margin-top');
+                let s_h = _modalDialog.height();
+                let b_h = _this.Sheight.length > 0 ? _this.Sheight : _modalBody.height();
+                let s_w = _this.SWidth.length > 0 ? _this.SWidth :_modalDialog.width();
+                let m_t = _modalDialog.css('margin-top');
 
                 if (_that.hasClass("glyphicon-zoom-in")) {
                     _that.addClass("glyphicon-zoom-out").removeClass("glyphicon-zoom-in");
                     _that.html("缩小");
-                    $("#showModal" + _this.modalIndex + " .modal-dialog").attr({ "n-height": s_h, "n-width": s_w, "n-margin": m_t }).css({ "width": d_w + "px", "margin": "0 auto", "padding": "0" });
-                    $("#showModal" + _this.modalIndex + " .modal-dialog .modal-content .modal-body").attr({ "n-height": b_h }).css({ "height": (d_h - 100) + "px" });
+                    _modalDialog.attr({ "n-height": s_h, "n-width": s_w, "n-margin": m_t }).css({ "width": d_w + "px", "margin": "0 auto", "padding": "0" });
+                    _modalBody.attr({ "n-height": b_h }).css({ "height": (d_h - 100) + "px" });
                     _this.Sheight = d_h - 100;
                     _this.SWidth = d_w;
                 } else {
                     _that.addClass("glyphicon-zoom-in").removeClass("glyphicon-zoom-out");
                     _that.html("放大");
-                    s_h = $("#showModal" + _this.modalIndex + " .modal-dialog").attr("n-height");
-                    s_w = $("#showModal" + _this.modalIndex + " .modal-dialog").attr("n-width");
-                    b_h = parseInt($("#showModal" + _this.modalIndex + " .modal-dialog .modal-content .modal-body").attr("n-height")) + 40;
-                    m_t = $("#showModal" + _this.modalIndex + " .modal-dialog").attr("n-margin");
-                    $("#showModal" + _this.modalIndex + " .modal-dialog").css({ "margin-top": m_t, "width": s_w + "px" });
-                    $("#showModal" + _this.modalIndex + " .modal-dialog .modal-body").css({ "height": b_h + "px" });
+                    s_h = _modalDialog.attr("n-height");
+                    s_w = _modalDialog.attr("n-width");
+                    b_h = parseInt(_modalBody.attr("n-height")) + 40;
+                    m_t = _modalDialog.attr("n-margin");
+                    _modalDialog.css({ "margin-top": m_t, "width": s_w + "px" });
+                    _modalBody.css({ "height": b_h + "px" });
                     _this.Sheight = b_h;
                     _this.SWidth = parseInt(s_w);
                 }
@@ -276,13 +284,9 @@ let showmodal = function (options) {
             });
         },
         ajustdialog: function () {
-            // debugger;
             // 使弹出框居中。。。  
             let $modal_dialog = $("#showModal" + this.modalIndex).find('.modal-dialog');
             //获取可视窗口的高度  
-            if ($("#showModal" + this.modalIndex).height() > window.screen.height - 355) {
-                //$("#showModal" + this.modalIndex).height(window.screen.height - 355);
-            }
             let clientHeight = $("#showModal" + this.modalIndex).height();
             let dialogHeight, m_top, isMargin;
 
