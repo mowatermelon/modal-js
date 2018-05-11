@@ -129,12 +129,13 @@
             });
         </pre>       
         <li class="h3">取消按钮有回调事件（非异步）需要两个按钮两端对齐</li>
-        <button class="btn btn-info m-b-1pc Qcallback">尝试一下</button><br />
+        <button class="btn btn-info m-b-1pc justifyQcallback">尝试一下</button><br />
         <pre class="code text-info h6">
             showmodal({
                 title: "警告",
                 content: "请确认相关信息是否都填写完成",
                 Qclose: true,
+                Justify:true,
                 callbackQ: true,
                 callbackQF:function(){
                 //dosomething
@@ -149,13 +150,12 @@
             });
         </pre>    
         <li class="h3">取消按钮有回调事件（非异步）不需要两个按钮两端对齐</li>
-        <button class="btn btn-info m-b-1pc justifyQcallback">尝试一下</button><br />
+        <button class="btn btn-info m-b-1pc Qcallback">尝试一下</button><br />
         <pre class="code text-info h6">
             showmodal({
                 title: "警告",
                 content: "请确认相关信息是否都填写完成",
                 Qclose: true,
-                Justify:true,
                 callbackQ: true,
                 callbackQF:function(){
                 //dosomething
