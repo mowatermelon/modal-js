@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>pcshowmodal</title>
-    <link type="text/css" href="dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link type="text/css" href="dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <style>
         .m-b-1pc{
             margin-bottom:1pc;
+        }
+        .code{
+            white-space: pre-wrap;
+            overflow: hidden;
+            word-break: break-all;
+            word-wrap:break-word;
         }
     </style>
 </head>
@@ -16,12 +22,12 @@
     <ol class="list-unstyle">
         <li class="h3">不需要修改默认提示的标题仅做修改提示内容</li>
         <button class="btn btn-info m-b-1pc changeContent">尝试一下</button><br />
-        <pre class="code text-info h5">
+        <pre class="code text-info h6">
             showmodal({content:"请确认相关信息是否都填写完成"}); 
         </pre> 
         <li class="h3">需要修改默认提示的标题并修改提示内容相关样式</li>
         <button class="btn btn-info m-b-1pc changeTitleContent">尝试一下</button><br />
-        <pre class="code text-info h5">
+        <pre class="code text-info h6">
             showmodal({
                 title: "警告",
                 content: "请确认相关信息是否都填写完成",
@@ -31,7 +37,7 @@
         </pre>       
         <li class="h3">模态窗body内容左对齐，标题居中对齐显示</li>
         <button class="btn btn-info m-b-1pc changeBodyAlign">尝试一下</button><br />
-        <pre class="code text-info h5">
+        <pre class="code text-info h6">
             showmodal({
                 title: "警告",
                 content: "请确认相关信息是否都填写完成, 请确认相关信息是否都填写完成, 请确认相关信息是否都填写完成",
@@ -43,12 +49,12 @@
         </pre>        
         <li class="h3"> 点击模态窗灰色背景处模态窗不会消失</li>
         <button class="btn btn-info m-b-1pc clickBg">尝试一下</button><br />
-        <pre class="code text-info h5">
+        <pre class="code text-info h6">
             showmodal({content:"请确认相关信息是否都填写完成",hideClick:"static "});
         </pre>        
         <li class="h3">modal-body内容为iframe</li>
         <button class="btn btn-info m-b-1pc BodyIframe">尝试一下</button><br />
-        <pre class="code text-info h5">
+        <pre class="code text-info h6">
             showmodal({
                 isText: false,//该参数一定要设置为false，src相关参数才会起作用
                 title: "打开西瓜博客",
@@ -58,7 +64,7 @@
         </pre>       
         <li class="h3">modal-body内容为iframe，且iframe中使用到input</li>
         <button class="btn btn-info m-b-1pc bodyIframeInput">尝试一下</button><br />
-        <pre class="code text-info h5">
+        <pre class="code text-info h6">
             //在父级页面中
                 showmodal({
                     isText: false, //该参数一定要设置为false，src相关参数才会起作用
@@ -74,7 +80,7 @@
         </pre>      
         <li class="h3">确认按钮有回调事件（非异步）</li>
         <button class="btn btn-info m-b-1pc Bcallback">尝试一下</button><br />
-        <pre class="code text-info h5">
+        <pre class="code text-info h6">
             showmodal({
                 title: "警告",
                 content: "请确认相关信息是否都填写完成",
@@ -93,7 +99,7 @@
         </pre>        
         <li class="h3">确认按钮有回调事件（异步）</li>
         <button class="btn btn-info m-b-1pc BcallbackSync">尝试一下</button><br />
-        <pre class="code text-info h5">
+        <pre class="code text-info h6">
             showmodal({
                 title: "警告",
                 content: "请确认相关信息是否都填写完成",
@@ -124,7 +130,7 @@
         </pre>       
         <li class="h3">取消按钮有回调事件（非异步）需要两个按钮两端对齐</li>
         <button class="btn btn-info m-b-1pc Qcallback">尝试一下</button><br />
-        <pre class="code text-info h5">
+        <pre class="code text-info h6">
             showmodal({
                 title: "警告",
                 content: "请确认相关信息是否都填写完成",
@@ -144,7 +150,7 @@
         </pre>    
         <li class="h3">取消按钮有回调事件（非异步）不需要两个按钮两端对齐</li>
         <button class="btn btn-info m-b-1pc justifyQcallback">尝试一下</button><br />
-        <pre class="code text-info h5">
+        <pre class="code text-info h6">
             showmodal({
                 title: "警告",
                 content: "请确认相关信息是否都填写完成",
@@ -160,7 +166,7 @@
         </pre>   
         <li class="h3">需要多次嵌套调用模态窗</li>
         <button class="btn btn-info m-b-1pc manyModal">尝试一下</button><br />
-        <pre class="code text-info h5">
+        <pre class="code text-info h6">
             showmodal({
                 title: "提示信息",
                 content: "确定吗1",
@@ -197,7 +203,7 @@
         
         <li class="h3">需要使用全屏显示按钮</li>
         <button class="btn btn-info m-b-1pc zoomModal">尝试一下</button><br />
-        <pre class="code text-info h5">
+        <pre class="code text-info h6">
          showmodal({
                 title: "警告",
                 content: "请确认相关信息是否都填写完成, 请确认相关信息是否都填写完成, 请确认相关信息是否都填写完成",
@@ -210,7 +216,7 @@
         
     </ol>
 </body>
-<script type="text/javascript" src="dist/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="dist/js/jquery.min.js"></script>
 <script type="text/javascript" src="dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="dist/js/pcmodal.js"></script>
 <script type="text/javascript">
