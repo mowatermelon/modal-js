@@ -117,7 +117,6 @@ let showmodal = function (options) {
 
             $(".show_Modal.modal .modal-dialog .modal-content .modal-header .glyphicon").css({ "line-height": "25px" });
             $(".show_Modal.modal .modal-dialog .modal-content  .modal-header").css({ "border-radius": "15px 15px 0 0", "border-bottom": "1px solid #e5e5e5" });
-            $(".show_Modal.modal .modal-dialog .modal-content  .modal-header.bg-info").css({ "box-shadow": "rgb(53, 172, 197) 0px 3px 8px 1px inset" });
             $(".show_Modal.modal .modal-dialog .modal-content .modal-footer").css({ "margin-top": "0px", "border-radius": "0 0 15px 15px", "padding": "5px" });
             $(".show_Modal.modal .modal-dialog .modal-content .modal-footer .row").css({ "width": "100%" });
             $(".show_Modal.modal .modal-dialog .modal-content .modal-footer .row .btn-link").css({ "font-size": "18px" });
