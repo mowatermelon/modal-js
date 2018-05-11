@@ -62,7 +62,7 @@ var showmodal = function (options) {
                     contentdiv = "<div class='modal-body text-center h3 bg-faded'>" + this.content + "</div>\n";        //创建contentdiv                    
                 }
             } else {
-                contentdiv = "<div class='modal-body text-center h3 bg-faded'><iframe src='" + this.src + "' id='modalIframe' name= 'modal_Iframe'></div>\n";        //创建contentdiv  
+                contentdiv = "<div class='modal-body text-center h3 bg-faded'><iframe src='" + this.src + "' id='modalIframe' name= 'modal_Iframe'></iframe></div>\n";        //创建contentdiv  
             }
 
             var footerdiv = "";
