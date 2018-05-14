@@ -1,4 +1,4 @@
-> pc版modal参数和方法，移动端的使用参数和方法大致一样
+> pc版modal参数和方法，移动端的使用参数和方法大致一样，当modal的body内容包含div标签，img标签，或者是iframe的时候，弹窗默认可以点击头部进行拖拽的。
 
 # 第一部分 默认参数
 
@@ -238,7 +238,37 @@ showmodal({isText:false, src: "XXX.html"})
 
 __请注意如果`isText`参数值为`false`，该参数必须要进行修改。__
 
-### 1.3.6 Sheight
+### 1.3.6 iframePadding
+
+| dataType| parameter|
+| ------------- |:-------------:|
+| string | Boolean|
+
+如果模态窗`modal-body` 的`content`的为`iframe`，设置`iframe`的外层是否有`padding`，默认是`false`。
+
+> 使用案例
+
+```javascript
+showmodal({isText:false, src: "XXX.html",iframePadding:true})
+```
+
+### 1.3.7 data
+
+| dataType| parameter|
+| ------------- |:-------------:|
+| string | JSON|
+
+如果模态窗`modal-body` 的`content`的为`iframe`，放在`iframe`地址后面进行参数拼接的json对象。
+
+> 使用案例
+
+```javascript
+showmodal({isText:false, src: "XXX.html",data:{a:1,b:2,c:'西瓜'}})
+```
+
+__请注意如果`isText`参数值为`false`，这个参数才会起作用。请注意如果不需要修改该参数默认值效果，在使用`showmodal`的时候，不用写这个参数。__
+
+### 1.3.8 Sheight
 
 | dataType| parameter|
 | ------------- |:-------------:|
@@ -256,7 +286,7 @@ showmodal({isText:false, src: "XXX.html",Sheight:100})
 
 __请注意输入具体像素值，请注意如果不需要修改该参数默认值效果，在使用`showmodal`的时候，不用写这个参数。__
 
-### 1.3.7 SMaxheight
+### 1.3.9 SMaxheight
 
 | dataType| parameter|
 | ------------- |:-------------:|
@@ -448,6 +478,18 @@ __请注意如果不需要修改该参数默认值效果，在使用`showmodal`�
 
 触发模态窗放大缩小之后的回调函数
 
+## 2.10 translateJsonToParams
+
+将传进来的`data`对象数据转换成字符串参数拼接在地址后面
+
+## 2.11 translateParamsToJson
+
+弹窗加载完成之后，可以调用此方法，将当前`iframe`地址中的字符串参数转化为`data`对象
+
+## 2.12 isIE9
+
+判断当前浏览器是否是`IE9`
+
 # 第三部分 实例demo
 
 ## 3.1 不需要修改默认提示的标题仅做修改提示内容
@@ -460,24 +502,24 @@ showmodal({content:"请确认相关信息是否都填写完成"});
 
 ```javascript
 showmodal({
-            title: "警告",
-            content: "请确认相关信息是否都填写完成",
-            SWidth: 200,
-            fontSize: 14
-        });
+  title: "警告",
+  content: "请确认相关信息是否都填写完成",
+  SWidth: 200,
+  fontSize: 14
+});
 ```
 
 ## 3.3 模态窗body内容左对齐，标题居中对齐显示
 
 ```javascript
 showmodal({
-            title: "警告",
-            content: "请确认相关信息是否都填写完成, 请确认相关信息是否都填写完成, 请确认相关信息是否都填写完成",
-            SWidth: 400,
-            fontSize: 14,
-            titleCenter:true,
-            contentLeft:true
-        });
+  title: "警告",
+  content: "请确认相关信息是否都填写完成, 请确认相关信息是否都填写完成, 请确认相关信息是否都填写完成",
+  SWidth: 400,
+  fontSize: 14,
+  titleCenter:true,
+  contentLeft:true
+});
 ```
 
 ## 3.4 点击模态窗灰色背景处模态窗不会消失
@@ -486,28 +528,92 @@ showmodal({
 showmodal({content:"请确认相关信息是否都填写完成",hideClick:"static "});
 ```
 
-## 3.5 modal-body内容为iframe
+## 3.4 在弹窗初始加载之后做点事情
 
 ```javascript
-    showmodal({
-        isText: false,//该参数一定要设置为false，src相关参数才会起作用
-        title: "打开百度",
-        src: "http://www.baidu.com?key=demo",//该参数用于绑定iframe的地址，也可通过地址传参
-        Bclose: false
-    });
+showmodal({
+  content:"请确认相关信息是否都填写完成",
+  callbackShown:function(){
+    console.log("西瓜酱喜欢吃西瓜，已经打开弹窗啦");
+  }
+})
 ```
 
-## 3.6 modal-body内容为iframe，且iframe中使用到input
+## 3.5 在弹窗关闭之后做点事情
+
+```javascript
+showmodal({
+  content:"请确认相关信息是否都填写完成",
+  callbackHide:function(){
+    console.log("西瓜酱喜欢吃西瓜呀，关闭弹窗啦");
+  }
+})
+```
+
+## 3.6 modal-body内容为iframe，需要传比较少的参数
+
+请注意这个时候，默认弹窗是可以点击头部进行拖拽的。
+
+```javascript
+showmodal({
+  isText: false,//该参数一定要设置为false，src相关参数才会起作用
+  title: "打开百度",
+  src: "http://www.baidu.com?key=demo",//该参数用于绑定iframe的地址，也可通过地址传参
+  Bclose: false
+});
+```
+
+## 3.7  需要通过iframe地址传递部分参数，需要传比较多的参数
+
+```javascript
+let bigParam = {
+  a: 1,
+  b: 2,
+  c: '西瓜',
+  d: 1,
+  e: 2,
+  f: '西瓜',
+  g: 1,
+  h: 2,
+  i: '西瓜'
+  }
+showmodal({
+  isText: false,
+  src: "XXX.html",
+  data: bigParam,
+  callbackShown:function(){
+    let _this = this;
+    console.log(_this.src);
+    console.log(_this.translateParamsToJson());
+  }
+})
+```
+
+## 3.8 modal-body内容为iframe，需要modal-body中存在padding
+
+请注意这个时候，默认弹窗是可以点击头部进行拖拽的。
+
+```javascript
+showmodal({
+  isText: false,//该参数一定要设置为false，src相关参数才会起作用
+  title: "打开百度",
+  src: "http://www.baidu.com?key=demo",//该参数用于绑定iframe的地址，也可通过地址传参
+  Bclose: false,
+  iframePadding: true
+});
+```
+
+## 3.9 modal-body内容为iframe，且iframe中使用到input
 
 在父级页面中
 
 ```javascript
-    showmodal({
-        isText: false, //该参数一定要设置为false，src相关参数才会起作用
-        title: "打开xxx ",
-        src: "xxx.aspx?key=demo ",//该参数用于绑定iframe的地址，也可通过地址传参
-        Bclose: false
-    });
+showmodal({
+  isText: false, //该参数一定要设置为false，src相关参数才会起作用
+  title: "打开xxx ",
+  src: "xxx.aspx?key=demo ",//该参数用于绑定iframe的地址，也可通过地址传参
+  Bclose: false
+});
 ```
 
 在子级页面中添加以下语句
@@ -519,163 +625,161 @@ $(function () {
 })
 ```
 
-## 3.7 确认按钮有回调事件（非异步）
+## 3.10 确认按钮有回调事件（非异步）
 
 ```javascript
 showmodal({
-    title: "警告",
-    content: "请确认相关信息是否都填写完成",
-    callbackB: true,
-    callbackBF:function(){
-    //dosomething
-    console.log("确认按钮的非异步回调事件");
-     return true;
-     /*
-     请注意一定要写返回值，
-     不需要阻断模态窗关闭事件，则直接返回true
-     需要阻断模态窗关闭事件，则直接返回false
-     */
+  title: "警告",
+  content: "请确认相关信息是否都填写完成",
+  callbackB: true,
+  callbackBF:function(){
+   // dosomething
+   console.log("确认按钮的非异步回调事件");
+   return true;
+   /*
+   请注意一定要写返回值，
+   不需要阻断模态窗关闭事件，则直接返回true
+   需要阻断模态窗关闭事件，则直接返回false
+   */
   }
 });
 ```
 
-## 3.8 确认按钮有回调事件（异步）
+## 3.11 确认按钮有回调事件（异步）
 
 ```javascript
 showmodal({
-    title: "警告",
-    content: "请确认相关信息是否都填写完成",
-    callbackB: true,
-    callbackBF:function(){
+  title: "警告",
+  content: "请确认相关信息是否都填写完成",
+  callbackB: true,
+  callbackBF:function(){
     var _this=this; // 请注意一定要先在ajax外部指明需要需要使用到的this，这个this即showmodal，这样在ajax内部才能调用到showmodal默认的相关方法
-        $.ajax({
-            type: "POST",
-            url: "RemoteHandle/XXXX.ashx? &T=" + Math.random(),
-            dataType: 'text',
-            async: false,
-            success: function (t) {
-                var data = window.eval('(' + t + ')');
-                if (data.length > 0) {
+    $.ajax({
+      type: "POST",
+      url: "RemoteHandle/XXXX.ashx? &T=" + Math.random(),
+      dataType: 'text',
+      async: false,
+      success: function (t) {
+        var data = window.eval('(' + t + ')');
+        if (data.length > 0) {
           console.log("确认按钮的异步回调事件完成");
           _this.closeModal();
           //请注意在异步事件状态为完成的时候再调用关闭模态窗事件
 
-                }
-            }
-        });
-
-         return false;// 请注意异步执行的回调方法一定要返回false
-  }
-});
-```
-
-## 3.9 取消按钮有回调事件（非异步）不需要两个按钮两端对齐
-
-```javascript
-showmodal({
-    title: "警告",
-    content: "请确认相关信息是否都填写完成",
-  Qclose: true,
-    callbackQ: true,
-    callbackQF:function(){
-    //dosomething
-    console.log("取消按钮的非异步回调事件");
-     return true;
-     /*
-     请注意一定要写返回值，
-     不需要阻断模态窗关闭事件，则直接返回true
-     需要阻断模态窗关闭事件，则直接返回false
-     */
-  }
-});
-```
-
-## 3.10  取消按钮有回调事件（非异步）需要两个按钮两端对齐
-
-```javascript
-showmodal({
-    title: "警告",
-    content: "请确认相关信息是否都填写完成",
-  Qclose: true,
-  Justify:true,
-    callbackQ: true,
-    callbackQF:function(){
-    //dosomething
-    console.log("取消按钮的非异步回调事件");
-     return true;
-  }
-});
-```
-
-## 3.11  取消按钮有回调事件（异步）
-
-```javascript
-showmodal({
-    title: "警告",
-    content: "请确认相关信息是否都填写完成",
-  Qclose: true,
-    callbackQ: true,
-    callbackQF:function(){
-    var _this=this;// 请注意一定要先在ajax外部指明需要需要使用到的this，这个this即showmodal，这样在ajax内部才能调用到showmodal默认的相关方法
-        $.ajax({
-            type: "POST",
-            url: "RemoteHandle/XXXX.ashx? &T=" + Math.random(),
-            dataType: 'text',
-            async: false,
-            success: function (t) {
-                var data = window.eval('(' + t + ')');
-                if (data.length > 0) {
-          console.log("确认按钮的异步回调事件完成");
-          _this.closeModal();
-          //请注意在异步事件状态为完成的时候再调用关闭模态窗事件
-
-                }
-            }
-        });
+        }
+      }
+    });
 
     return false;// 请注意异步执行的回调方法一定要返回false
   }
 });
 ```
 
-## 3.12  需要多次嵌套调用模态窗
+## 3.12 取消按钮有回调事件（非异步）不需要两个按钮两端对齐
 
 ```javascript
 showmodal({
-    title: "提示信息",
-    content: "确定吗1",
-    modalIndex: "01",
-    Qclose: true,
-    callbackB: true,
-    callbackBF: function() {
-      showmodal({
-        title: "提示信息",
-        modalIndex: "02",
-        content: "确定吗2",
-        Qclose: true,
-        SWidth: "300",
-        hideClick: "static",
-        fontSize: "18",
-        callbackB: true,
-        callbackBF: function() {
-          showmodal({
-            title: "提示信息",
-            modalIndex: "03",
-            content: "确定吗3",
-            Qclose: true,
-            SWidth: "200",
-            hideClick: "static",
-            fontSize: "18"
-          });
-          return false;
-        }
-      });
-      return false;
-    }
+  title: "警告",
+  content: "请确认相关信息是否都填写完成",
+  Qclose: true,
+  callbackQ: true,
+  callbackQF:function(){
+   // dosomething
+   console.log("取消按钮的非异步回调事件");
+   return true;
+   /*
+   请注意一定要写返回值，
+   不需要阻断模态窗关闭事件，则直接返回true
+   需要阻断模态窗关闭事件，则直接返回false
+   */
+  }
 });
 ```
 
-## 3.13  需要使用全屏显示按钮
+## 3.13  取消按钮有回调事件（非异步）需要两个按钮两端对齐
+
+```javascript
+showmodal({
+  title: "警告",
+  content: "请确认相关信息是否都填写完成",
+  Qclose: true,
+  Justify:true,
+  callbackQ: true,
+  callbackQF:function(){
+   // dosomething
+   console.log("取消按钮的非异步回调事件");
+   return true;
+  }
+});
+```
+
+## 3.14  取消按钮有回调事件（异步）
+
+```javascript
+showmodal({
+  title: "警告",
+  content: "请确认相关信息是否都填写完成",
+  Qclose: true,
+  callbackQ: true,
+  callbackQF:function(){
+    var _this=this;// 请注意一定要先在ajax外部指明需要需要使用到的this，这个this即showmodal，这样在ajax内部才能调用到showmodal默认的相关方法
+    $.ajax({
+      type: "POST",
+      url: "RemoteHandle/XXXX.ashx? &T=" + Math.random(),
+      dataType: 'text',
+      async: false,
+      success: function (t) {
+        var data = window.eval('(' + t + ')');
+        if (data.length > 0) {
+          console.log("确认按钮的异步回调事件完成");
+          _this.closeModal();
+          //请注意在异步事件状态为完成的时候再调用关闭模态窗事件
+        }
+       }
+    });
+    return false;// 请注意异步执行的回调方法一定要返回false
+  }
+});
+```
+
+## 3.15  需要多次嵌套调用模态窗
+
+```javascript
+showmodal({
+  title: "提示信息",
+  content: "确定吗1",
+  modalIndex: "01",
+  Qclose: true,
+  callbackB: true,
+  callbackBF: function() {
+    showmodal({
+      title: "提示信息",
+      modalIndex: "02",
+      content: "确定吗2",
+      Qclose: true,
+      SWidth: "300",
+      hideClick: "static",
+      fontSize: "18",
+      callbackB: true,
+      callbackBF: function() {
+      showmodal({
+        title: "提示信息",
+        modalIndex: "03",
+        content: "确定吗3",
+        Qclose: true,
+        SWidth: "200",
+        hideClick: "static",
+        fontSize: "18"
+      });
+      return false;
+      }
+    });
+    return false;
+  }
+});
+```
+
+## 3.16  使用全屏显示按钮，并做相关处理
 
 ```javascript
 showmodal({
@@ -683,7 +787,7 @@ showmodal({
   content: "请确认相关信息是否都填写完成, 请确认相关信息是否都填写完成, 请确认相关信息是否都填写完成",
   isZoom: true,
   zoomCallback: function (){
-      console.log(this.Sheight,this.SWidth);
+    console.log(this.Sheight,this.SWidth);
   }
 });
 ```
