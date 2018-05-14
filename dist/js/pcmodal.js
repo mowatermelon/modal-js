@@ -319,7 +319,7 @@ let showmodal = function (options) {
                     });
                 }
                 //hide方法后调用
-                $(_this).remove();
+                $(this).remove();
                 $(document.body).removeClass("modal-open");
                 _modalAll.blur();
                 _this.callbackHide();
