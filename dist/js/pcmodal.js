@@ -288,7 +288,7 @@ let showmodal = function (options) {
             if (iE9) {
                 _this.callbackShown();
             }
-            _modalFooter.children("#close").click(function (event) {
+            _modalFooter.find("#close").click(function (event) {
                 if (_this.callbackB && _this.Bclose) {
                     if (!_this.callbackBF()) {
                         _this.cancelFlow(event);
@@ -296,7 +296,7 @@ let showmodal = function (options) {
                     }
                 }
             });
-            _modalFooter.children("#bcancel").click(function (event) {
+            _modalFooter.find("#bcancel").click(function (event) {
                 if (_this.callbackQ && _this.Qclose) {
                     if (!_this.callbackQF()) {
                         _this.cancelFlow(event);
