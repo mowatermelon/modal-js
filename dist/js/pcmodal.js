@@ -53,7 +53,7 @@ let showmodal = function (options) {
             headerdiv += "<div class='btn-toolbar' role='toolbar'>";
 
             if (_this.isZoom) {
-                headerdiv += "<button id='btn-zoom' class='btn btn-info glyphicon glyphicon-zoom-in'>放大</button>\n";
+                headerdiv += "<button id='btn-zoom' class='btn btn-" + _this.flag + " glyphicon glyphicon-zoom-in btn-sm'>放大</button>\n";
             }
 
             if (_this.Tclose) {
