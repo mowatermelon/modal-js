@@ -110,7 +110,7 @@ let showmodal = function (options) {
             this.initFunction();
         },
         /**
-         * 绑定事件
+         * 绑定样式
          */
         initCss: function () {
             let _this = this;
@@ -272,17 +272,23 @@ let showmodal = function (options) {
             });
 
         },
+        /**
+         * 绑定事件
+         */
         initFunction: function () {
             let _this = this;
             let _modalOld = $("#showModal0" + (_this.modalIndex - 1));
             let _modalAll = $("#showModal" + _this.modalIndex);
-            let _modalDialog = _modalAll.children(".modal-dialog");
-            let _modalHeader = _modalDialog.children(".modal-content .modal-header");
-            let _modalBody = _modalDialog.children(".modal-content .modal-body");
+            let _modalDialog = _modalAll.children(" .modal-dialog");
+            let _modalContent = _modalDialog.children(".modal-content");
+            let _modalHeader = _modalContent.children(".modal-header");
+            let _modalBody = _modalContent.children(".modal-body");
+            let _modalFooter = _modalContent.children(".modal-footer");
+      
             if (iE9) {
                 _this.callbackShown();
             }
-            _modalAll.children("#close").click(function (event) {
+            _modalFooter.children("#close").click(function (event) {
                 if (_this.callbackB && _this.Bclose) {
                     if (!_this.callbackBF()) {
                         _this.cancelFlow(event);
@@ -290,7 +296,7 @@ let showmodal = function (options) {
                     }
                 }
             });
-            _modalAll.children("#bcancel").click(function (event) {
+            _modalFooter.children("#bcancel").click(function (event) {
                 if (_this.callbackQ && _this.Qclose) {
                     if (!_this.callbackQF()) {
                         _this.cancelFlow(event);
