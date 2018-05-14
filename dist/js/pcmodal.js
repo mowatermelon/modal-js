@@ -10,7 +10,8 @@
 
 let showmodal = function (options) {
     let defaults = {
-        flag: "info", //设置弹出modal的状态 success:成功窗体,warning:警告窗体,info:信息窗体,default:默认无样式
+        flag: "info", //设置弹出modal的状态 primary:深蓝色窗体, secondary:深灰色窗体,success:深绿色窗体
+                     //danger:深红色窗体,warning:深黄色窗体,info:淡蓝色窗体,dark:黑色窗体
         title: "提示信息", //设置模态窗标题
         modalIndex: "01", //设置模态窗索引值，默认只使用一次弹窗，模态窗的序号默认为01
         titleCenter: false, //设置模态窗标题是否水平居中显示，默认为false,默认左对齐
@@ -52,7 +53,7 @@ let showmodal = function (options) {
             headerdiv += "<div class='btn-toolbar' role='toolbar'>";
 
             if (_this.isZoom) {
-                headerdiv += "<button id='btn-zoom' class='btn btn-info glyphicon glyphicon-zoom-in'>放大</button>\n";
+                headerdiv += "<button id='btn-zoom' class='btn btn-" + _this.flag + " glyphicon glyphicon-zoom-in btn-sm'>放大</button>\n";
             }
 
             if (_this.Tclose) {
@@ -115,7 +116,7 @@ let showmodal = function (options) {
         initCss: function () {
             let _this = this;
             let _modalAll = $("#showModal" + _this.modalIndex);
-            let _modalDialog = _modalAll.children(" .modal-dialog");
+            let _modalDialog = _modalAll.children(".modal-dialog");
             let _modalContent = _modalDialog.children(".modal-content");
             let _modalHeader = _modalContent.children(".modal-header");
             let _modalBody = _modalContent.children(".modal-body");
@@ -140,11 +141,11 @@ let showmodal = function (options) {
                 "padding-left": "20px",
                 "padding-right": "20px"
             });
-            _modalHeader.children(".close").css({
+            _modalHeader.find(".close").css({
                 "margin": 0,
                 "padding": "0 10px 0 0"
             });
-            _modalHeader.children(".glyphicon").css({
+            _modalHeader.find(".glyphicon").css({
                 "line-height": "25px"
             });
 
@@ -288,7 +289,7 @@ let showmodal = function (options) {
             if (iE9) {
                 _this.callbackShown();
             }
-            _modalFooter.children("#close").click(function (event) {
+            _modalFooter.find("#close").click(function (event) {
                 if (_this.callbackB && _this.Bclose) {
                     if (!_this.callbackBF()) {
                         _this.cancelFlow(event);
@@ -296,7 +297,7 @@ let showmodal = function (options) {
                     }
                 }
             });
-            _modalFooter.children("#bcancel").click(function (event) {
+            _modalFooter.find("#bcancel").click(function (event) {
                 if (_this.callbackQ && _this.Qclose) {
                     if (!_this.callbackQF()) {
                         _this.cancelFlow(event);

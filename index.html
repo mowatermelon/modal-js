@@ -31,6 +31,69 @@
             showmodal({content:"请确认相关信息是否都填写完成"}); 
         </pre>
 
+        <li class="h3">primary弹窗</li>
+        <button class="btn btn-info m-b-1pc primaryModal">尝试一下</button>
+        <br />
+        <pre class="code text-info h6">
+            showmodal({flag:"primary",Qclose: true}); 
+        </pre>
+
+        <li class="h3">secondary弹窗</li>
+        <button class="btn btn-info m-b-1pc secondaryModal">尝试一下</button>
+        <br />
+        <pre class="code text-info h6">
+            showmodal({flag:"secondary",Qclose: true}); 
+        </pre>
+
+        <li class="h3">success弹窗</li>
+        <button class="btn btn-info m-b-1pc successModal">尝试一下</button>
+        <br />
+        <pre class="code text-info h6">
+            showmodal({flag:"success",Qclose: true}); 
+        </pre>
+
+        <li class="h3">danger弹窗</li>
+        <button class="btn btn-info m-b-1pc dangerModal">尝试一下</button>
+        <br />
+        <pre class="code text-info h6">
+            showmodal({flag:"danger",Qclose: true}); 
+        </pre>
+
+        <li class="h3">warning弹窗</li>
+        <button class="btn btn-info m-b-1pc warningModal">尝试一下</button>
+        <br />
+        <pre class="code text-info h6">
+            showmodal({flag:"warning",Qclose: true}); 
+        </pre>
+
+        <li class="h3">info弹窗（默认值）</li>
+        <button class="btn btn-info m-b-1pc infoModal">尝试一下</button>
+        <br />
+        <pre class="code text-info h6">
+            showmodal({flag:"info",Qclose: true}); 
+        </pre>
+
+        <li class="h3">light弹窗</li>
+        <button class="btn btn-info m-b-1pc lightModal">尝试一下</button>
+        <br />
+        <pre class="code text-info h6">
+            showmodal({flag:"light",Qclose: true}); 
+        </pre>
+
+        <li class="h3">dark弹窗</li>
+        <button class="btn btn-info m-b-1pc darkModal">尝试一下</button>
+        <br />
+        <pre class="code text-info h6">
+            showmodal({flag:"dark",Qclose: true}); 
+        </pre>
+
+        <li class="h3">white弹窗</li>
+        <button class="btn btn-info m-b-1pc whiteModal">尝试一下</button>
+        <br />
+        <pre class="code text-info h6">
+            showmodal({flag:"white",Qclose: true}); 
+        </pre>
+
         <li class="h3">需要修改默认提示的标题并修改提示内容相关样式</li>
         <button class="btn btn-info m-b-1pc changeTitleContent">尝试一下</button>
         <br />
@@ -315,6 +378,34 @@
             showmodal({
                 content: "请确认相关信息是否都填写完成"
             });
+        });
+
+        $(".primaryModal").click(function () {
+            showmodal({ flag: "primary",Qclose: true });
+        });
+        $(".secondaryModal").click(function () {
+            showmodal({ flag: "secondary",Qclose: true });
+        });
+        $(".successModal").click(function () {
+            showmodal({ flag: "success",Qclose: true});
+        });
+        $(".dangerModal").click(function () {
+            showmodal({ flag: "danger",Qclose: true });
+        });
+        $(".warningModal").click(function () {
+            showmodal({ flag: "warning",Qclose: true });
+        });
+        $(".infoModal").click(function () {
+            showmodal({ flag: "info",Qclose: true });
+        });
+        $(".lightModal").click(function () {
+            showmodal({ flag: "light",Qclose: true });
+        });
+        $(".darkModal").click(function () {
+            showmodal({ flag: "dark",Qclose: true });
+        });
+        $(".whiteModal").click(function () {
+            showmodal({ flag: "white",Qclose: true });
         });
         $(".changeTitleContent").click(function () {
             showmodal({
