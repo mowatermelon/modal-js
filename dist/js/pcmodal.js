@@ -116,7 +116,7 @@ let showmodal = function (options) {
         initCss: function () {
             let _this = this;
             let _modalAll = $("#showModal" + _this.modalIndex);
-            let _modalDialog = _modalAll.children(" .modal-dialog");
+            let _modalDialog = _modalAll.children(".modal-dialog");
             let _modalContent = _modalDialog.children(".modal-content");
             let _modalHeader = _modalContent.children(".modal-header");
             let _modalBody = _modalContent.children(".modal-body");
@@ -141,11 +141,11 @@ let showmodal = function (options) {
                 "padding-left": "20px",
                 "padding-right": "20px"
             });
-            _modalHeader.children(".close").css({
+            _modalHeader.find(".close").css({
                 "margin": 0,
                 "padding": "0 10px 0 0"
             });
-            _modalHeader.children(".glyphicon").css({
+            _modalHeader.find(".glyphicon").css({
                 "line-height": "25px"
             });
 
