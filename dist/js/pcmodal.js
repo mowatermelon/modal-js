@@ -10,7 +10,8 @@
 
 let showmodal = function (options) {
     let defaults = {
-        flag: "info", //设置弹出modal的状态 success:成功窗体,warning:警告窗体,info:信息窗体,default:默认无样式
+        flag: "info", //设置弹出modal的状态 primary:深蓝色窗体, secondary:深灰色窗体,success:深绿色窗体
+                     //danger:深红色窗体,warning:深黄色窗体,info:淡蓝色窗体,dark:黑色窗体
         title: "提示信息", //设置模态窗标题
         modalIndex: "01", //设置模态窗索引值，默认只使用一次弹窗，模态窗的序号默认为01
         titleCenter: false, //设置模态窗标题是否水平居中显示，默认为false,默认左对齐
