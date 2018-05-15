@@ -184,17 +184,7 @@ let showmodal = function (options) {
             //判断是否需要重新设置模态窗宽度
             if (_this.SWidth != "") {
                 let m_top = _modalAll.css("margin-top");
-                _modalDialog.css({
-                    "max-width": _this.SWidth + "px",
-                    "width": _this.SWidth + "px"
-                });
-                _modalContent.css({
-                    "width": _this.SWidth + "px"
-                })
-                .children('.modal-header,.modal-body.modal-footer').css({
-                    "width": _this.SWidth + "px"
-                });
-
+                _this.changeDialogWidth(_modalDialog,_modalContent,_this.SWidth,0);
             }
             //判断是否需要重新设置模态窗高度
             if (_this.Sheight != "") {
@@ -206,16 +196,7 @@ let showmodal = function (options) {
 
             //判断是否需要重新设置模态窗宽度
             if (_this.SMaxWidth != "") {
-                let m_top = _modalAll.css("margin-top");
-                _modalDialog.css({
-                    "max-width": _this.SMaxWidth + "px"
-                });
-                _modalContent.css({
-                    "max-width": _this.SMaxWidth + "px"
-                })
-                .children('.modal-header,.modal-body.modal-footer').css({
-                    "max-width": _this.SMaxWidth + "px"
-                });
+                _this.changeDialogWidth(_modalDialog,_modalContent,_this.SWidth,1);
             }
 
             //判断是否需要重新设置模态窗高度
@@ -349,7 +330,7 @@ let showmodal = function (options) {
             $("#btn-zoom").click(function () {
                 let _that = $(this);
                 _this.moveModal();
-                let d_h = document.body.clientHeight;
+                let d_h = window.screen.height-135;
                 let d_w = document.body.clientWidth;
                 let s_h = _modalDialog.height();
                 let b_h = _this.Sheight.length > 0 ? _this.Sheight : _modalBody.height();
@@ -363,8 +344,9 @@ let showmodal = function (options) {
                         "n-height": s_h,
                         "n-width": s_w,
                         "n-margin": m_t
-                    }).css({
-                        "width": d_w + "px",
+                    });
+                    _this.changeDialogWidth(_modalDialog,_modalContent,d_w,0);
+                    _modalDialog.css({
                         "margin": "0 auto",
                         "padding": "0"
                     });
@@ -383,9 +365,9 @@ let showmodal = function (options) {
                     b_h = parseInt(_modalBody.attr("n-height")) + 40;
                     m_t = _modalDialog.attr("n-margin");
                     _modalDialog.css({
-                        "margin-top": m_t,
-                        "width": s_w + "px"
+                        "margin-top": m_t
                     });
+                    _this.changeDialogWidth(_modalDialog,_modalContent,s_w,0);
                     _modalBody.css({
                         "height": b_h + "px"
                     });
@@ -529,6 +511,33 @@ let showmodal = function (options) {
                 }
 
 
+
+            }
+        },
+        changeDialogWidth:function(_modalDialog,_modalContent,width,type){
+            if(width > 0){
+                if(type===0){
+                    _modalDialog.css({
+                        "max-width": width + "px",
+                        "width": width + "px"
+                    });
+                    _modalContent.css({
+                        "width": width + "px"
+                    })
+                    .find('.modal-header,.modal-body,.modal-footer').css({
+                        "width": width + "px"
+                    });
+                }else{
+                    _modalDialog.css({
+                        "max-width": width + "px"
+                    });
+                    _modalContent.css({
+                        "max-width": width + "px"
+                    })
+                    .find('.modal-header,.modal-body,.modal-footer').css({
+                        "max-width": width + "px"
+                    });
+                }
 
             }
         },
