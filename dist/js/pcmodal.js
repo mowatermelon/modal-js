@@ -53,7 +53,7 @@ let showmodal = function (options) {
             headerdiv += "<div class='btn-toolbar' role='toolbar'>";
 
             if (_this.isZoom) {
-                headerdiv += "<button id='btn-zoom' class='btn btn-" + _this.flag + " glyphicon glyphicon-zoom-in btn-sm'>放大</button>\n";
+                headerdiv += "<button id='btn-zoom' class='btn btn-" + _this.flag + " btn-sm'><i class='ion-android-expand'></i></button>\n";
             }
 
             if (_this.Tclose) {
@@ -134,8 +134,7 @@ let showmodal = function (options) {
             });
             _modalHeader.children(".modal-title,.close").css({
                 "font-size": "20px",
-                "color": "#fff",
-                "line-height": "40px"
+                "color": "#fff"
             });
             _modalHeader.children(".modal-title").css({
                 "padding-left": "20px",
@@ -143,10 +142,11 @@ let showmodal = function (options) {
             });
             _modalHeader.find(".close").css({
                 "margin": 0,
-                "padding": "0 10px 0 0"
+                "padding": 0,
+                "height": "24px"
             });
-            _modalHeader.find(".glyphicon").css({
-                "line-height": "25px"
+            _modalHeader.find(".btn-sm").css({
+                "line-height": "20px"
             });
 
             _modalBody.css({
@@ -154,9 +154,9 @@ let showmodal = function (options) {
             });
 
             _modalFooter.css({
-                "margin-top": "0px",
+                "margin-top": 0,
                 "border-radius": "0 0 15px 15px",
-                "padding": "5px"
+                "padding": 0
             });
             _modalFooter.children(".row").css({
                 "width": "100%"
@@ -328,7 +328,7 @@ let showmodal = function (options) {
             });
 
             $("#btn-zoom").click(function () {
-                let _that = $(this);
+                let _children = $(this).children("i");
                 _this.moveModal();
                 let d_h = window.screen.height-135;
                 let d_w = document.body.clientWidth;
@@ -337,9 +337,8 @@ let showmodal = function (options) {
                 let s_w = _this.SWidth.length > 0 ? _this.SWidth : _modalDialog.width();
                 let m_t = _modalDialog.css('margin-top');
 
-                if (_that.hasClass("glyphicon-zoom-in")) {
-                    _that.addClass("glyphicon-zoom-out").removeClass("glyphicon-zoom-in");
-                    _that.html("缩小");
+                if (_children.hasClass("ion-android-expand")) {
+                    _children.addClass("ion-android-contract").removeClass("ion-android-expand");
                     _modalDialog.attr({
                         "n-height": s_h,
                         "n-width": s_w,
@@ -358,8 +357,7 @@ let showmodal = function (options) {
                     _this.Sheight = d_h - 100;
                     _this.SWidth = d_w;
                 } else {
-                    _that.addClass("glyphicon-zoom-in").removeClass("glyphicon-zoom-out");
-                    _that.html("放大");
+                    _children.addClass("ion-android-expand").removeClass("ion-android-contract");
                     s_h = _modalDialog.attr("n-height");
                     s_w = _modalDialog.attr("n-width");
                     b_h = parseInt(_modalBody.attr("n-height")) + 40;
