@@ -24,6 +24,20 @@
 <body>
     <ol class="list-unstyle">
 
+        <li class="h3">SWidth弹窗</li>
+        <button class="btn btn-info m-b-1pc changeWidth">尝试一下</button>
+        <br />
+        <pre class="code text-info h6">
+            showmodal({flag:"primary",SWidth: 1000}); 
+        </pre>
+
+        <li class="h3">Sheight弹窗</li>
+        <button class="btn btn-info m-b-1pc changeHeight">尝试一下</button>
+        <br />
+        <pre class="code text-info h6">
+            showmodal({flag:"primary",Sheight: 1000}); 
+        </pre>
+
         <li class="h3">不需要修改默认提示的标题仅做修改提示内容</li>
         <button class="btn btn-info m-b-1pc changeContent">尝试一下</button>
         <br />
@@ -374,6 +388,20 @@
 <script type="text/javascript" src="dist/js/pcmodal.js"></script>
 <script type="text/javascript">
     $(function () {
+
+
+        $(".changeWidth").click(function () {
+            showmodal({
+                flag: "primary",
+                SWidth: 1000
+            });
+        });
+        $(".changeHeight").click(function () {
+            showmodal({
+                flag: "primary",
+                Sheight: 1000
+            });
+        });
         $(".changeContent").click(function () {
             showmodal({
                 content: "请确认相关信息是否都填写完成"
@@ -381,31 +409,58 @@
         });
 
         $(".primaryModal").click(function () {
-            showmodal({ flag: "primary",Qclose: true });
+            showmodal({
+                flag: "primary",
+                Qclose: true
+            });
         });
         $(".secondaryModal").click(function () {
-            showmodal({ flag: "secondary",Qclose: true });
+            showmodal({
+                flag: "secondary",
+                Qclose: true
+            });
         });
         $(".successModal").click(function () {
-            showmodal({ flag: "success",Qclose: true});
+            showmodal({
+                flag: "success",
+                Qclose: true
+            });
         });
         $(".dangerModal").click(function () {
-            showmodal({ flag: "danger",Qclose: true });
+            showmodal({
+                flag: "danger",
+                Qclose: true
+            });
         });
         $(".warningModal").click(function () {
-            showmodal({ flag: "warning",Qclose: true });
+            showmodal({
+                flag: "warning",
+                Qclose: true
+            });
         });
         $(".infoModal").click(function () {
-            showmodal({ flag: "info",Qclose: true });
+            showmodal({
+                flag: "info",
+                Qclose: true
+            });
         });
         $(".lightModal").click(function () {
-            showmodal({ flag: "light",Qclose: true });
+            showmodal({
+                flag: "light",
+                Qclose: true
+            });
         });
         $(".darkModal").click(function () {
-            showmodal({ flag: "dark",Qclose: true });
+            showmodal({
+                flag: "dark",
+                Qclose: true
+            });
         });
         $(".whiteModal").click(function () {
-            showmodal({ flag: "white",Qclose: true });
+            showmodal({
+                flag: "white",
+                Qclose: true
+            });
         });
         $(".changeTitleContent").click(function () {
             showmodal({
