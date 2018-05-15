@@ -11,7 +11,7 @@
 let showmodal = function (options) {
     let defaults = {
         flag: "info", //设置弹出modal的状态 primary:深蓝色窗体, secondary:深灰色窗体,success:深绿色窗体
-                     //danger:深红色窗体,warning:深黄色窗体,info:淡蓝色窗体,dark:黑色窗体
+        //danger:深红色窗体,warning:深黄色窗体,info:淡蓝色窗体,dark:黑色窗体
         title: "提示信息", //设置模态窗标题
         modalIndex: "01", //设置模态窗索引值，默认只使用一次弹窗，模态窗的序号默认为01
         titleCenter: false, //设置模态窗标题是否水平居中显示，默认为false,默认左对齐
@@ -184,7 +184,7 @@ let showmodal = function (options) {
             //判断是否需要重新设置模态窗宽度
             if (_this.SWidth != "") {
                 let m_top = _modalAll.css("margin-top");
-                _this.changeDialogWidth(_modalDialog,_modalContent,_this.SWidth,0);
+                _this.changeDialogWidth(_modalDialog, _modalContent, _this.SWidth, 0);
             }
             //判断是否需要重新设置模态窗高度
             if (_this.Sheight != "") {
@@ -196,7 +196,7 @@ let showmodal = function (options) {
 
             //判断是否需要重新设置模态窗宽度
             if (_this.SMaxWidth != "") {
-                _this.changeDialogWidth(_modalDialog,_modalContent,_this.SWidth,1);
+                _this.changeDialogWidth(_modalDialog, _modalContent, _this.SWidth, 1);
             }
 
             //判断是否需要重新设置模态窗高度
@@ -280,7 +280,7 @@ let showmodal = function (options) {
             let _modalHeader = _modalContent.children(".modal-header");
             let _modalBody = _modalContent.children(".modal-body");
             let _modalFooter = _modalContent.children(".modal-footer");
-      
+
             if (iE9) {
                 _this.callbackShown();
             }
@@ -330,8 +330,8 @@ let showmodal = function (options) {
             $("#btn-zoom").click(function () {
                 let _children = $(this).children("i");
                 _this.moveModal();
-                let d_h = window.screen.height-135;
-                let d_w = document.body.clientWidth;
+                let d_h = window.screen.height - 135;
+                let d_w = window.screen.width - 20;
                 let s_h = _modalDialog.height();
                 let b_h = _this.Sheight.length > 0 ? _this.Sheight : _modalBody.height();
                 let s_w = _this.SWidth.length > 0 ? _this.SWidth : _modalDialog.width();
@@ -344,7 +344,7 @@ let showmodal = function (options) {
                         "n-width": s_w,
                         "n-margin": m_t
                     });
-                    _this.changeDialogWidth(_modalDialog,_modalContent,d_w,0);
+                    _this.changeDialogWidth(_modalDialog, _modalContent, d_w, 0);
                     _modalDialog.css({
                         "margin": "0 auto",
                         "padding": "0"
@@ -365,7 +365,7 @@ let showmodal = function (options) {
                     _modalDialog.css({
                         "margin-top": m_t
                     });
-                    _this.changeDialogWidth(_modalDialog,_modalContent,s_w,0);
+                    _this.changeDialogWidth(_modalDialog, _modalContent, s_w, 0);
                     _modalBody.css({
                         "height": b_h + "px"
                     });
@@ -512,29 +512,29 @@ let showmodal = function (options) {
 
             }
         },
-        changeDialogWidth:function(_modalDialog,_modalContent,width,type){
-            if(width > 0){
-                if(type===0){
+        changeDialogWidth: function (_modalDialog, _modalContent, width, type) {
+            if (width > 0) {
+                if (type === 0) {
                     _modalDialog.css({
                         "max-width": width + "px",
                         "width": width + "px"
                     });
                     _modalContent.css({
-                        "width": width + "px"
-                    })
-                    .find('.modal-header,.modal-body,.modal-footer').css({
-                        "width": width + "px"
-                    });
-                }else{
+                            "width": width + "px"
+                        })
+                        .find('.modal-header,.modal-body,.modal-footer').css({
+                            "width": width + "px"
+                        });
+                } else {
                     _modalDialog.css({
                         "max-width": width + "px"
                     });
                     _modalContent.css({
-                        "max-width": width + "px"
-                    })
-                    .find('.modal-header,.modal-body,.modal-footer').css({
-                        "max-width": width + "px"
-                    });
+                            "max-width": width + "px"
+                        })
+                        .find('.modal-header,.modal-body,.modal-footer').css({
+                            "max-width": width + "px"
+                        });
                 }
 
             }
