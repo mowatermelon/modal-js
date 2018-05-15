@@ -123,13 +123,13 @@ let showmodal = function (options) {
             let _modalFooter = _modalContent.children(".modal-footer");
 
             _modalContent.css({
-                "border-radius": "15px",
+                "border-radius": "8px",
                 "background-color": "transparent"
             });
 
             _modalHeader.css({
                 "padding": "5px",
-                "border-radius": "15px 15px 0 0",
+                "border-radius": "8px 8px 0 0",
                 "border-bottom": "1px solid #e5e5e5"
             });
             _modalHeader.children(".modal-title,.close").css({
@@ -155,7 +155,7 @@ let showmodal = function (options) {
 
             _modalFooter.css({
                 "margin-top": 0,
-                "border-radius": "0 0 15px 15px",
+                "border-radius": "0 0 8px 8px",
                 "padding": 0
             });
             _modalFooter.children(".row").css({
