@@ -156,7 +156,7 @@ let showmodal = function (options) {
             _modalFooter.css({
                 "margin-top": 0,
                 "border-radius": "0 0 8px 8px",
-                "padding": 0
+                "padding": "5px"
             });
             _modalFooter.children(".row").css({
                 "width": "100%"
