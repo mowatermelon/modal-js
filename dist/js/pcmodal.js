@@ -180,10 +180,18 @@ let showmodal = function (options) {
                 });
 
             }
+
             //判断是否需要重新设置模态窗宽度
             if (_this.SWidth != "") {
                 let m_top = _modalAll.css("margin-top");
                 _modalDialog.css({
+                    "max-width": _this.SWidth + "px",
+                    "width": _this.SWidth + "px"
+                });
+                _modalContent.css({
+                    "width": _this.SWidth + "px"
+                })
+                .children('.modal-header,.modal-body.modal-footer').css({
                     "width": _this.SWidth + "px"
                 });
 
@@ -200,6 +208,12 @@ let showmodal = function (options) {
             if (_this.SMaxWidth != "") {
                 let m_top = _modalAll.css("margin-top");
                 _modalDialog.css({
+                    "max-width": _this.SMaxWidth + "px"
+                });
+                _modalContent.css({
+                    "max-width": _this.SMaxWidth + "px"
+                })
+                .children('.modal-header,.modal-body.modal-footer').css({
                     "max-width": _this.SMaxWidth + "px"
                 });
             }
@@ -522,7 +536,7 @@ let showmodal = function (options) {
             let _this = this;
             let _modalAll = $("#showModal" + _this.modalIndex);
             let _modalDialog = _modalAll.children(".modal-dialog");
-            let _modalHeader = _modalDialog.children(".modal-content .modal-header");
+            let _modalHeader = _modalDialog.find(".modal-header");
             let move = {
                 isMove: false,
                 left: 0,
