@@ -608,4 +608,5 @@ let showmodal = function (options) {
     };
     let opts = $.extend(defaults, options);
     opts.init();
+    return opts;
 }
